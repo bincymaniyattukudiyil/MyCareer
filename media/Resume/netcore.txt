@@ -1,0 +1,15 @@
+1. themes bootswatch.com
+download theam, copy and paste in root->new stylesheet(BootswatchTheme.css)
+_layout (up side) add (insted of defult bootsrtp)
+<link rel="stylesheet" href="~/css/BootswatchTheme.css" />
+
+2. go to bootsrtap 5 web page ->introduction copy js bundle and paste (bottom side) insted of bundle.jss
+
+3. add navigation go to bootswatch.com
+4. connection strin inside in appsettings.json file
+create block
+"AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=BINCYBINIL\\BINSERVER;Database=KidsCenter;Trusted_Connection=SSPI;Encrypt=false;TrustServerCertification=true"}
+5.  Create folder Data
+ 

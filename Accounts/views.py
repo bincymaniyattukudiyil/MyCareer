@@ -115,14 +115,15 @@ def JobRegister(request):
 
     return render(request,"JobListing.html")
 def JobSearch(request):
+    print(request.method)
     if request.method == 'POST':
-        Title=request.GET.get('Title')
-        Location = request.GET.get('Location')
-        Category = request.GET.get('Category')
-
-        item=JobListing.objects.all().filter((Q(JobTitle__contains=Title) | Q(JobDesc__contains=Title)
-                                             | Q(JobLocation__contains=Location) | Q(JobCategory__contains=Category) |
-                                             Q(Jobskill__contains=Title)) & Q(JobStatus__contains='Active'))
+        Title=request.POST['JobTitle']
+        Location = request.POST['JobLocation']
+        Category = request.POST['JobCategory']
+        print(Title)
+        item=JobListing.objects.all().filter((Q(JobTitle__contains=Title) & Q(JobDesc__contains=Title)
+                                             & Q(JobLocation__contains=Location) & Q(JobCategory__contains=Category)
+                                             ) )
 
         return render(request, "JobSerch.html",{'item':item,'Title':Title,'Location':Location,'Category':Category})
     return render(request, 'index.html')
@@ -208,7 +209,7 @@ def Jobapply(request,id):
         # if JobseekerResume.is_valid():
         Jobsubmit=JobApplication(EmployerID_id=EmployerID,JobseekerID_id=JobseekerID,JobListingID_id=id,JobseekerResume=JobseekerResume,JobStatus=JobStatus,JobseekerCover=JobseekerCover)
         Jobsubmit.save()
-        return render(request, "Index.html")
+        return render(request, "Home.html")
     return render(request,"Jobapply.html",{'jobid':id})
 def applicantview(request,id):
     if request.method == 'POST':
