@@ -1,0 +1,75 @@
+{% extends 'EmployerBase.html' %}
+{% load static %}
+{% block content %}
+
+
+<form method="post">
+{% csrf_token %}
+   <h3>Welcome {{username}}</h3>
+  <table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+
+
+
+      <th> Title</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Category</th>
+      <th>Salary</th>
+      <th>Skill</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in items %}
+    <tr>
+      <td>
+
+        <div class="d-flex align-items-center">
+          <img
+              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+              alt=""
+              style="width: 45px; height: 45px"
+              class="rounded-circle"
+              />
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{i.JobTitle}}</p>
+
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{i.JobDesc}}</p>
+
+      </td>
+       <td>
+        <p class="fw-normal mb-1">{{i.JobLocation}}</p>
+
+      </td>
+       <td>
+        <p class="fw-normal mb-1">{{i.JobCategory}}</p>
+
+      </td>
+       <td>
+        <p class="fw-normal mb-1">{{i.JobSalary}}</p>
+
+      </td>
+       <td>
+        <p class="fw-normal mb-1">{{i.Skill}}</p>
+
+      </td>
+      <td>
+
+          <a href="{% url 'JobEdit' i.id %}">Edit </a>
+      </td>
+        <td>
+            <a href="{% url 'JobDelete' i.id %}">Delete </a>
+      </td>
+    </tr>
+
+  </tbody>
+{% endfor %}
+  </table>
+  </form>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block content %}
+  <form method="post">
+{% csrf_token %}
+ {% for i in items %}
+  <table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>EmailID</th>
+       <th>JobseekerPhoneNo</th>
+      <th>Job Category</th>
+      <th>Experience</th>
+      <th>skills</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>
+
+        <div class="d-flex align-items-center">
+          <img
+              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+              alt=""
+              style="width: 45px; height: 45px"
+              class="rounded-circle"
+              />
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{i.JobseekerID.JobseekerFirstName}} {{i.JobseekerID.JobseekerLastName}}</p>
+
+          </div>
+        </div>
+      </td>
+       <td>
+        <p class="fw-normal mb-1">{{i.JobseekerID.JobseekerGender}}</p>
+
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{i.JobseekerID.JobseekerEmailID}}</p>
+
+      </td>
+       <p class="fw-normal mb-1">{{i.JobseekerID.JobseekerPhoneNo}}</p>
+
+      </td>
+       <td>
+        <p class="fw-normal mb-1">{{i.JobseekerID.JobseekerTitle}}</p>
+
+      </td>
+       <td>
+        <p class="fw-normal mb-1">{{i.JobseekerID.JobseekerExperience}}</p>
+
+      </td>
+       <td>
+        <p class="fw-normal mb-1">{{i.JobseekerID.JobseekerSkill}}</p>
+
+      </td>
+
+
+
+ </tr>
+
+    <tr>
+    <td>
+    {{i.JobseekerCover}}
+    </td>
+
+   <td>
+     <a href="i.JobseekerResume.url" download="i.JobseekerResume.url"> Resume</a>
+   </td>
+ <tr>
+  <td>
+
+       <select name="JobStatus"  class="select form-control-sm">
+                      <option value="Submitted">Application Status</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Processing">Processing</option>
+       </select>
+       <input class="btn btn-primary btn-sm" onclick="{% url 'applicantview' i.id %}" type="submit" />
+
+    </td>
+  </tbody>
+
+  </table>
+  </form>
+ {% endfor %}
+{% endblock %}

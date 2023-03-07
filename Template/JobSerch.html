@@ -1,0 +1,59 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block content %}
+<div class="container border border secondary">
+     <div class="row border border secondary">
+        <div  class="col-md-2">
+             <label class="form-label  " >Job Title</label>
+        </div>
+        <div  class="col-md-2">
+             <label class="form-label" >Description</label>
+        </div>
+        <div  class="col-md-2">
+             <label class="form-label" >Location</label>
+        </div>
+        <div  class="col-md-2">
+             <label class="form-label" >skills</label>
+        </div>
+
+        <div  class="col-md-2">
+             <label class="form-label" >Salary</label>
+        </div>
+        <div  class="col-md-2">
+             <label class="form-label" ></label>
+        </div>
+
+     </div>
+
+    {% for i in item %}
+    <div class="row">
+        <div class="col-md-2">
+            {{i.JobTitle}}
+
+        </div>
+        <div class="col-md-2">
+            {{i.JobDesc}}
+
+        </div>
+        <div class="col-md-2">
+            {{i.JobLocation}}
+
+        </div>
+        <div class="col-md-2">
+            {{i.Jobskill}}
+
+        </div>
+        <div class="col-md-2">
+            {{i.JobSalary}}
+
+        </div>
+         <div class="col-md-2">
+
+             <a href="{% url 'Jobapply' i.id %}">Apply </a>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

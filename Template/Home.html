@@ -1,0 +1,71 @@
+{% extends 'JobseekerBase.html' %}
+{% load static %}
+{% block content %}
+<h4> Welcome {{username}}</h4><br>
+
+  <form method="post">
+    {% csrf_token %}
+    <h6>Job Application Details</h6>
+
+  <table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Category</th>
+      <th>Salary</th>
+      <th>skill</th>
+      <th>Application Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in items %}
+    <tr>
+      <td>
+
+        <div class="d-flex align-items-center">
+          <img
+              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+              alt=""
+              style="width: 45px; height: 45px"
+              class="rounded-circle"
+              />
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{i.JobListingID.JobTitle}}</p>
+
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{i.JobListingID.JobDesc}}</p>
+
+      </td>
+       <td>
+        <p class="fw-normal mb-1">{{i.JobListingID.JobLocation}}</p>
+
+      </td>
+       <td>
+        <p class="fw-normal mb-1">{{i.JobListingID.JobCategory}}</p>
+
+      </td>
+       <td>
+        <p class="fw-normal mb-1">{{i.JobListingID.JobSalary}}</p>
+
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{i.JobListingID.Jobskill}}</p>
+
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{i.JobStatus}}</p>
+
+      </td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+
+  </table>
+  </form>
+{% endblock %}
