@@ -237,10 +237,10 @@ def JobList(request):
 
     return render(request, "EmployerJobList.html", {'items': items})
 def JobEdit(request,id):
-    print(request.method)
-    print(id)
+
+
     if request.method == 'POST':
-        items = JobApplication.objects.get(id=id)
+        items = JobListing.objects.get(id=id)
 
         JobTitle = request.POST['JobTitle']
         JobDesc = request.POST['JobDesc']
@@ -256,11 +256,15 @@ def JobEdit(request,id):
         items.JobSalary = JobSalary
         items.Jobskill = Jobskill
         items.JobStatus = JobStatus
+        print(items.JobSalary)
         items.save()
-    else:
-        items = JobListing.objects.all().filter(id=id)
-        print(items)
-        return render(request,"JobDetails.html",{"items":items})
+        return render(request, "EmployerJobList.html")
+    print(request.method)
+    print(id)
+    item = JobListing.objects.all().filter(id=id)
+    print(item)
+    return render(request, "JobDetails.html", {"items": item})
+
 def JobDelete(request,id):
     items = JobApplication.objects.get(id=id)
     items.delete()
